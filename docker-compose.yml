@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  database:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile-db
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3306:3306"
+
+  nginx:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile-nginx
+    container_name: nginx_container
+    ports:
+      - "80:80"
+    depends_on:
+      - database
