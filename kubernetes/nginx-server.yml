@@ -26,5 +26,7 @@ spec:
   selector:
     app: nginx
   ports:
-  - port: 80
-    targetPort: 80
+    - port: 80
+      targetPort: 80
+      nodePort: 30080  # Aquí asignamos un puerto específico del nodo
+  type: NodePort  # Cambiar a NodePort para exponer el servicio fuera del cluster
