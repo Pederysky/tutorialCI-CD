@@ -14,7 +14,8 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Set up Kubernetes (kind)
-      uses: helm/kind-action@v1.8.0
+      run: |
+        kind create cluster --name kind
 
     - name: Set up kubectl
       uses: azure/setup-kubectl@v3
@@ -31,8 +32,8 @@ jobs:
 
     - name: Load Docker images into kind cluster
       run: |
-        kind load docker-image my-database-image
-        kind load docker-image my-nginx-image
+        kind load docker-image my-database-image --name kind
+        kind load docker-image my-nginx-image --name kind
 
     - name: Deploy database and nginx to Kubernetes
       run: |
