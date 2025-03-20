@@ -39,8 +39,3 @@ jobs:
       run: |
         kubectl apply -f ./kubernetes/base-database.yml
         kubectl apply -f ./kubernetes/nginx-server.yml
-
-    # Aquí agregamos el paso de port-forward para redirigir el puerto
-    - name: Port forward nginx service
-      run: kubectl port-forward svc/nginx-service 8080:80
-
